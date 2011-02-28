@@ -1,0 +1,34 @@
+#!/usr/bin/env perl
+
+{ 
+    package TestServer;
+
+    use strict;
+    use warnings;
+
+    use parent 'HTTP::Server::Simple';
+
+    sub header { 
+        my $self = shift;
+        my ( $name, $val ) = @_;
+
+        warn "$name => $val\n";
+    }
+
+    sub handle_request { 
+        my $self = shift;
+
+        print "HTTP/1.1 200 OK\r\n";
+    }
+
+    sub handler {  }
+
+    TestServer->new( 1234 )->run;
+}
+
+
+1;
+
+
+
+
